@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mytags %}
+
+{% block title %}{{ current_page.title }} - {{ course.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/course.css' %}">
+<link rel="stylesheet" href="{% static 'css/page_view.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'course_list' %}">Courses</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'course_detail' course.id %}">{{ course.title }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ current_page.title }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Page Content -->
+        <div class="col-md-8">
+            <h1 class="mb-4">{{ current_page.title }}</h1>
+            <div class="page-content">
+                {{ current_page.content|safe }}
+            </div>
+
+            <!-- Page Navigation -->
+            <div class="page-navigation d-flex justify-content-between">
+                {% with prev_page=pages|previous:current_page %}
+                {% if prev_page %}
+                <a href="{% url 'page_view' course.id prev_page.id %}" class="btn btn-outline-primary" id="prevPageBtn">
+                    <i class="bi bi-arrow-left"></i> Previous Page
+                </a>
+                {% else %}
+                <div></div>
+                {% endif %}
+                {% endwith %}
+
+                {% with next_page=pages|next:current_page %}
+                {% if next_page %}
+                <a href="{% url 'page_view' course.id next_page.id %}" class="btn btn-primary" id="nextPageBtn">
+                    Next Page <i class="bi bi-arrow-right"></i>
+                </a>
+                {% else %}
+                <div></div>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+
+        <!-- Course Navigation Sidebar -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Course Pages</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    {% for p in pages %}
+                    <a href="{% url 'page_view' course.id p.id %}" 
+                       class="list-group-item list-group-item-action {% if p.id == current_page.id %}active{% endif %}">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">{{ p.title }}</h6>
+                            <small>Page {{ p.order }}</small>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if progress %}
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Your Progress</h5>
+                </div>
+                <div class="card-body">
+                    <div class="progress mb-2">
+                        {% with total_pages=pages.count viewed_pages=progress.viewed_pages.count %}
+                        <div class="progress-bar" role="progressbar" 
+                             data-progress="{% widthratio viewed_pages total_pages 100 %}"
+                             aria-valuenow="{{ viewed_pages }}" 
+                             aria-valuemin="0" 
+                             aria-valuemax="{{ total_pages }}">
+                        </div>
+                        {% endwith %}
+                    </div>
+                    <small class="text-muted">
+                        {{ progress.viewed_pages.count }} of {{ pages.count }} pages viewed
+                    </small>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Hidden navigation data -->
+<div id="navigationData" 
+     data-prev-url="{% with prev_page=pages|previous:current_page %}{% if prev_page %}{% url 'page_view' course.id prev_page.id %}{% endif %}{% endwith %}"
+     data-next-url="{% with next_page=pages|next:current_page %}{% if next_page %}{% url 'page_view' course.id next_page.id %}{% endif %}{% endwith %}"
+     style="display: none;">
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/page_view.js' %}"></script>
+{% endblock %} 

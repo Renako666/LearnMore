@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Teacher - Learning Platform{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Add Teacher</h2>
+            </div>
+            <div class="card-body">
+                {% if students %}
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.user.id_for_label }}" class="form-label">Select User</label>
+                        {{ form.user }}
+                        {% if form.user.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ form.user.errors }}
+                        </div>
+                        {% endif %}
+                        <div class="form-text">Select a user to set as a teacher.</div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'teacher_management' %}" class="btn btn-outline-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary">Add as Teacher</button>
+                    </div>
+                </form>
+                {% else %}
+                <div class="alert alert-info">
+                    No student users available to promote to teacher. Please add some student users first.
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'teacher_management' %}" class="btn btn-outline-secondary">Back</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

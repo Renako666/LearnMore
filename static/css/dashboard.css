@@ -1,0 +1,97 @@
+/* Dashboard card styles */
+.dashboard-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card .card-header {
+  background-color: transparent;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dashboard-card .card-body {
+  padding-top: 0.5rem;
+}
+
+/* Stat number styles */
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color); /* Will use the green primary color */
+}
+
+.stat-label {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Progress bar styles */
+.progress {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  background-color: var(--primary-color); /* Will use the green primary color */
+}
+
+/* Chart container styles */
+.chart-container {
+  position: relative;
+  height: 300px;
+  margin-bottom: 2rem;
+}
+
+/* Course list styles */
+.course-progress-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.course-progress-item {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-progress-item:last-child {
+  border-bottom: none;
+}
+
+.course-progress-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.course-progress-meta {
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+}
+
+.course-progress-badge {
+  padding: 0.35rem 0.65rem;
+  border-radius: 50rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
+}

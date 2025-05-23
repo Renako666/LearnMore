@@ -1,0 +1,61 @@
+learning_platform/
+├── manage.py
+├── learning_platform/  # 主项目目录
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── accounts/  # 用户认证应用
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   └── templates/
+│       └── accounts/
+│           ├── login.html
+│           ├── signup.html
+│           └── profile.html
+├── courses/  # 课程管理应用
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── forms.py
+│   ├── utils.py  # QR码生成等工具函数
+│   └── templates/
+│       └── courses/
+│           ├── course_list.html
+│           ├── course_create.html
+│           ├── course_edit.html
+│           ├── course_detail.html
+│           └── page_editor.html
+├── dashboard/  # 学习追踪和仪表盘应用
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   └── templates/
+│       └── dashboard/
+│           ├── learner_dashboard.html
+│           └── instructor_dashboard.html
+├── static/
+│   ├── css/
+│   │   ├── main.css
+│   │   ├── dashboard.css
+│   │   └── course.css
+│   ├── js/
+│   │   ├── page_editor.js
+│   │   ├── course_preview.js
+│   │   └── charts.js
+│   └── img/
+└── templates/  # 全局模板
+    ├── base.html
+    ├── home.html
+    └── admin/

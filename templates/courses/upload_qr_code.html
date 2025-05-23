@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Join Course with QR Code{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title mb-0">Join Course with QR Code</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            {{ form.qr_code_image.label_tag }}
+                            {{ form.qr_code_image }}
+                            {% if form.qr_code_image.help_text %}
+                            <div class="form-text">{{ form.qr_code_image.help_text }}</div>
+                            {% endif %}
+                            {% if form.qr_code_image.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.qr_code_image.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Upload QR Code</button>
+                            <a href="{% url 'course_list' %}" class="btn btn-outline-secondary">Back to Courses</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h3 class="card-title h5">How to join a course:</h3>
+                    <ol class="mb-0">
+                        <li>Get the QR code from your teacher</li>
+                        <li>Take a photo of the QR code or save it to your device</li>
+                        <li>Click "Choose File" above and select the QR code image</li>
+                        <li>Click "Upload QR Code" to join the course</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

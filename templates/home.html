@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Learning Platform{% endblock %}
+
+{% block content %}
+<div class="row align-items-center py-5">
+    <div class="col-md-12 text-center">
+        <h1 class="display-4 fw-bold mb-4">Create and Share Knowledge</h1>
+        <p class="lead mb-4">Easily create courses, share via QR codes, and track learning progress.</p>
+        <div class="mt-4">
+            {% if user.is_authenticated %}
+                {% if user.role.is_teacher or user.role.is_admin %}
+                <a href="{% url 'course_create' %}" class="btn btn-success btn-lg me-2">Create Course</a>
+                {% endif %}
+                <a href="{% url 'course_list' %}" class="btn btn-outline-success btn-lg">Browse Courses</a>
+                {% if user.role.is_student %}
+                <a href="{% url 'upload_qr_code' %}" class="btn btn-primary btn-lg ms-2">Join course with QR code</a>
+                {% endif %}
+            {% else %}
+            <a href="{% url 'account_signup' %}" class="btn btn-success btn-lg me-2">Sign Up</a>
+            <a href="{% url 'account_login' %}" class="btn btn-outline-success btn-lg">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
