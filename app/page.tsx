@@ -2,10 +2,6 @@
 
 import { useEffect } from 'react'
 
-
-// Load custom chart scripts
-import '@/scripts/charts';
-
 export default function HomePage() {
   useEffect(() => {
     // Load Chart.js
@@ -14,15 +10,14 @@ export default function HomePage() {
     chartScript.async = true
     document.head.appendChild(chartScript)
 
-    // Load custom chart script
-    const customScript = document.createElement('script')
-    customScript.src = '/static/js/charts.js'
-    customScript.async = true
-    document.body.appendChild(customScript)
+  
+    chartScript.onload = () => {
+      console.log('Charts initialized');
+    
+    }
 
     return () => {
       document.head.removeChild(chartScript)
-      document.body.removeChild(customScript)
     }
   }, [])
 
