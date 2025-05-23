@@ -2,8 +2,6 @@
 
 import { useEffect } from 'react'
 
-// Load Chart.js
-import Chart from 'chart.js/auto';
 
 // Load custom chart scripts
 import '@/scripts/charts';
