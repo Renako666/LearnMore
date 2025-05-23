@@ -5,13 +5,13 @@ django-summernote==0.8.20.0
 Pillow==10.1.0
 qrcode==7.4.2
 opencv-python-headless==4.8.1.78
-numpy==1.21.6
+numpy==1.24.3
 
 # Production Dependencies
 gunicorn==21.2.0
 whitenoise==6.6.0
 django-cors-headers==4.3.1
-python-dotenv==0.21.1
+python-dotenv==1.0.0
 
 # Security Dependencies
 django-axes==6.3.0
@@ -22,4 +22,3 @@ sentry-sdk==1.39.1
 
 # Database Backup
 django-dbbackup==3.3.0
-
