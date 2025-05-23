@@ -4,22 +4,22 @@ django-allauth==0.57.0
 django-summernote==0.8.20.0
 Pillow==10.1.0
 qrcode==7.4.2
-opencv-python==4.8.1.78
-numpy==1.26.2
+opencv-python-headless==4.8.1.78
+numpy==1.21.6
 
 # Production Dependencies
 gunicorn==21.2.0
-whitenoise==6.6.0  # For static file serving
-django-cors-headers==4.3.1  # For CORS support
-python-dotenv==1.0.0  # For environment variable management
+whitenoise==6.6.0
+django-cors-headers==4.3.1
+python-dotenv==0.21.1
 
 # Security Dependencies
-django-security==0.15.0  # Additional security features
-django-axes==6.3.0  # For login attempt tracking
+django-axes==6.3.0
 
 # Monitoring and Logging
-django-debug-toolbar==4.2.0  # For development debugging
-sentry-sdk==1.39.1  # For error tracking in production
+django-debug-toolbar==4.2.0
+sentry-sdk==1.39.1
 
 # Database Backup
-django-dbbackup==3.3.0  # For database backup management
+django-dbbackup==3.3.0
+
